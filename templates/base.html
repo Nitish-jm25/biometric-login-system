@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+        BioSecure
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="/" class="brand">
+
+        <div class="brand-icon">
+            B
+        </div>
+
+        <div>
+
+            <h2>BioSecure</h2>
+
+            <span>
+                Biometric Authentication
+            </span>
+
+        </div>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/register">
+            Register
+        </a>
+
+        <a href="/login">
+            Login
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="main-container">
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 BioSecure · Biometric Login System
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

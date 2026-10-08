@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}
+BioSecure | Home
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            🔐 Secure Biometric Authentication
+        </div>
+
+
+        <h1>
+            Welcome to
+            <span>BioSecure</span>
+        </h1>
+
+
+        <p>
+            A modern biometric login system that
+            authenticates registered users using
+            facial recognition technology.
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                href="/register"
+                class="btn btn-primary"
+            >
+                Register Face
+            </a>
+
+
+            <a
+                href="/login"
+                class="btn btn-secondary"
+            >
+                Login with Face
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="security-card">
+
+        <div class="face-icon">
+            👤
+        </div>
+
+
+        <h3>
+            Face Authentication
+        </h3>
+
+
+        <p>
+            Verify your identity using
+            facial biometric features.
+        </p>
+
+
+        <div class="security-status">
+
+            <span class="status-dot"></span>
+
+            System Ready
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="features">
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            📷
+        </div>
+
+        <h3>
+            Face Recognition
+        </h3>
+
+        <p>
+            Identify registered users through
+            facial biometric features.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            🛡️
+        </div>
+
+        <h3>
+            Secure Authentication
+        </h3>
+
+        <p>
+            Face images are converted into
+            numerical biometric representations.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            📊
+        </div>
+
+        <h3>
+            Login History
+        </h3>
+
+        <p>
+            Monitor successful and unsuccessful
+            authentication attempts.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}
+Register | BioSecure
+{% endblock %}
+
+
+{% block content %}
+
+<div class="auth-page">
+
+    <div class="auth-card">
+
+        <div class="page-header">
+
+            <div class="page-icon">
+                👤
+            </div>
+
+            <h1>
+                Register Your Face
+            </h1>
+
+            <p>
+                Create your biometric profile
+                using multiple facial samples.
+            </p>
+
+        </div>
+
+
+        <form id="registerForm">
+
+            <!-- ================================
+                 USER INFORMATION
+            ================================= -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="userId">
+                    User ID
+                </label>
+
+                <input
+                    type="text"
+                    id="userId"
+                    placeholder="Example: BIO001"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ================================
+                 CAMERA
+            ================================= -->
+
+            <div class="camera-section">
+
+                <div class="camera-header">
+
+                    <h3>
+                        Face Capture
+                    </h3>
+
+                    <span id="cameraStatus">
+                        Camera not started
+                    </span>
+
+                </div>
+
+
+                <!-- Sample Progress -->
+
+                <div class="sample-progress">
+
+                    <div class="progress-info">
+
+                        <span>
+                            Biometric Samples
+                        </span>
+
+                        <strong id="sampleCounter">
+                            0/5
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress-track">
+
+                        <div
+                            id="sampleProgress"
+                            class="progress-fill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Instruction -->
+
+                <div class="sample-instruction">
+
+                    <span class="instruction-icon">
+                        💡
+                    </span>
+
+                    <span id="sampleInstruction">
+                        Look directly at the camera.
+                    </span>
+
+                </div>
+
+
+                <!-- Camera -->
+
+                <div class="camera-container">
+
+                    <video
+                        id="video"
+                        autoplay
+                        playsinline
+                    ></video>
+
+                    <div class="face-frame"></div>
+
+                    <div
+                        id="cameraOverlay"
+                        class="camera-overlay"
+                    >
+                        Camera will appear here
+                    </div>
+
+                </div>
+
+
+                <canvas
+                    id="canvas"
+                    hidden
+                ></canvas>
+
+
+                <!-- Camera buttons -->
+
+                <div class="camera-actions">
+
+                    <button
+                        type="button"
+                        id="startCamera"
+                        class="btn btn-secondary"
+                    >
+                        Start Camera
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="captureFace"
+                        class="btn btn-primary"
+                        disabled
+                    >
+                        Capture Sample
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================================
+                 MESSAGE
+            ================================= -->
+
+            <div
+                id="registerMessage"
+                class="message"
+            ></div>
+
+
+            <!-- ================================
+                 REGISTER
+            ================================= -->
+
+            <button
+                type="submit"
+                id="registerButton"
+                class="btn btn-primary btn-full"
+                disabled
+            >
+                Register Biometric Profile
+            </button>
+
+        </form>
+
+
+        <p class="auth-footer">
+
+            Already registered?
+
+            <a href="/login">
+                Login here
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='js/register.js') }}"
+></script>
+
+{% endblock %}

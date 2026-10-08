@@ -1,0 +1,371 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard | BioSecure
+{% endblock %}
+
+
+{% block content %}
+
+<div class="dashboard-page">
+
+    <!-- =====================================================
+         DASHBOARD HEADER
+    ====================================================== -->
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <div class="success-badge">
+                ✓ Authentication Successful
+            </div>
+
+            <h1>
+                Welcome, {{ current_user }}
+            </h1>
+
+            <p>
+                Secure biometric authentication and
+                access monitoring
+            </p>
+
+        </div>
+
+
+        <a
+            href="/logout"
+            class="btn btn-secondary"
+        >
+            Logout
+        </a>
+
+    </div>
+
+
+    <!-- =====================================================
+         STATISTICS
+    ====================================================== -->
+
+    <div class="stats-grid">
+
+
+        <!-- Registered Users -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <div class="stat-content">
+
+                <span>
+                    Registered Users
+                </span>
+
+                <strong>
+                    {{ statistics.total_users }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- Login Attempts -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🔐
+            </div>
+
+            <div class="stat-content">
+
+                <span>
+                    Login Attempts
+                </span>
+
+                <strong>
+                    {{ statistics.total_attempts }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- Successful -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✓
+            </div>
+
+            <div class="stat-content">
+
+                <span>
+                    Successful
+                </span>
+
+                <strong>
+                    {{ statistics.successful_logins }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- Failed -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ×
+            </div>
+
+            <div class="stat-content">
+
+                <span>
+                    Failed
+                </span>
+
+                <strong>
+                    {{ statistics.failed_logins }}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         AUTHENTICATION HISTORY
+    ====================================================== -->
+
+    <section class="dashboard-section">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    Authentication History
+                </h2>
+
+                <p>
+                    Recent biometric authentication attempts
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            User ID
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Match Score
+                        </th>
+
+                        <th>
+                            Date &amp; Time
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for entry in history %}
+
+                    <tr>
+
+                        <td>
+                            {{ entry.user_id }}
+                        </td>
+
+
+                        <td>
+
+                            {% if entry.status == "SUCCESS" %}
+
+                            <span class="status success">
+                                ✓ SUCCESS
+                            </span>
+
+                            {% else %}
+
+                            <span class="status failed">
+                                ✕ FAILED
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            {% if entry.confidence is not none %}
+
+                            <strong>
+                                {{ entry.confidence }}%
+                            </strong>
+
+                            {% else %}
+
+                            —
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+                            {{ entry.login_time }}
+                        </td>
+
+                    </tr>
+
+
+                    {% else %}
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            class="empty-state"
+                        >
+                            No authentication attempts yet.
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         REGISTERED USERS
+    ====================================================== -->
+
+    <section class="dashboard-section">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    Registered Users
+                </h2>
+
+                <p>
+                    Users enrolled in the biometric system
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            User ID
+                        </th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Registered On
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for user in users %}
+
+                    <tr>
+
+                        <td>
+                            {{ user.user_id }}
+                        </td>
+
+                        <td>
+                            {{ user.name }}
+                        </td>
+
+                        <td>
+                            {{ user.created_at }}
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+
+                        <td
+                            colspan="3"
+                            class="empty-state"
+                        >
+                            No registered users.
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+{% endblock %}

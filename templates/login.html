@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login | BioSecure
+{% endblock %}
+
+{% block content %}
+
+<div class="auth-page">
+
+    <div class="auth-card">
+
+        <!-- ==========================================
+             HEADER
+        =========================================== -->
+
+        <div class="page-header">
+
+            <div class="page-icon">
+                🔐
+            </div>
+
+            <h1>
+                Biometric Login
+            </h1>
+
+            <p>
+                Authenticate securely using your face
+            </p>
+
+        </div>
+
+
+        <!-- ==========================================
+             LOGIN FORM
+        =========================================== -->
+
+        <form id="loginForm">
+
+
+            <!-- USER ID -->
+
+            <div class="form-group">
+
+                <label for="userId">
+                    User ID
+                </label>
+
+                <input
+                    type="text"
+                    id="userId"
+                    placeholder="Enter your User ID"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ======================================
+                 CAMERA
+            ======================================= -->
+
+            <div class="camera-section">
+
+                <div class="camera-header">
+
+                    <h3>
+                        Face Authentication
+                    </h3>
+
+                    <span id="cameraStatus">
+                        Camera not started
+                    </span>
+
+                </div>
+
+
+                <div class="camera-container">
+
+                    <video
+                        id="video"
+                        autoplay
+                        playsinline
+                    ></video>
+
+
+                    <div class="face-frame"></div>
+
+
+                    <div
+                        id="cameraOverlay"
+                        class="camera-overlay"
+                    >
+                        Camera will appear here
+                    </div>
+
+                </div>
+
+
+                <canvas
+                    id="canvas"
+                    hidden
+                ></canvas>
+
+
+                <!-- CAMERA BUTTON -->
+
+                <div class="camera-actions">
+
+                    <button
+                        type="button"
+                        id="startCamera"
+                        class="btn btn-secondary"
+                    >
+                        Start Camera
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 MESSAGE
+            ======================================= -->
+
+            <div
+                id="loginMessage"
+                class="message"
+            ></div>
+
+
+            <!-- ======================================
+                 AUTHENTICATE
+            ======================================= -->
+
+            <button
+                type="submit"
+                id="authenticateButton"
+                class="btn btn-primary btn-full"
+                disabled
+            >
+                Authenticate Face
+            </button>
+
+
+        </form>
+
+
+        <!-- ==========================================
+             FOOTER
+        =========================================== -->
+
+        <p class="auth-footer">
+
+            Don't have a biometric profile?
+
+            <a href="/register">
+                Register here
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     AUTHENTICATION RESULT MODAL
+=================================================== -->
+
+<div
+    id="resultModal"
+    class="result-modal"
+>
+
+    <div class="result-card">
+
+
+        <div
+            id="resultIcon"
+            class="result-icon"
+        >
+            ✓
+        </div>
+
+
+        <h2 id="resultTitle">
+            Authentication Successful
+        </h2>
+
+
+        <p
+            id="resultMessage"
+            class="result-message"
+        >
+            Welcome
+        </p>
+
+
+        <div
+            id="resultScore"
+            class="result-score"
+        >
+            Match Score:
+            <strong>0%</strong>
+        </div>
+
+
+        <button
+            id="resultButton"
+            class="btn btn-primary result-button"
+        >
+            Continue
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='js/login.js') }}"
+></script>
+
+{% endblock %}
